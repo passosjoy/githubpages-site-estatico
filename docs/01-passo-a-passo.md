@@ -21,7 +21,7 @@ Os dois são grátis em repositórios **públicos**. No plano Free, o Pages não
 | Validação antes de publicar | não | sim (testes, lint, link check) |
 | Limite de 10 builds/hora | aplica | não se aplica |
 
-Para usar Actions: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+Para usar Actions: **Settings → Pages → Build and deployment → Source: GitHub Actions**. Neste lab, o deploy também exige a variável de repositório `ENABLE_PAGES=true` (**Settings → Secrets and variables → Actions → Variables**). Assim, quem faz fork sem querer publicar fica só com a validação.
 
 ## 4. Entenda o workflow
 
@@ -33,7 +33,7 @@ permissions:
 ```
 
 1. `build` faz o checkout, roda o `check_site.py` e empacota `site/` com `upload-pages-artifact`.
-2. `deploy` só roda na `main` (em PR ele apenas valida). Ele publica com `deploy-pages` no environment `github-pages`, e a URL aparece no resumo do job.
+2. `deploy` só roda na `main` com `ENABLE_PAGES=true` (em PR ele apenas valida). Ele publica com `deploy-pages` no environment `github-pages`, e a URL aparece no resumo do job.
 3. `concurrency: pages` evita dois deploys simultâneos.
 
 ## 5. Publique

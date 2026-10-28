@@ -1,4 +1,4 @@
-name: Deploy GitHub Pages
+name: Validar e publicar site
 
 on:
   push:
@@ -27,8 +27,10 @@ jobs:
         with:
           path: site
 
+  # Desligado neste repo (é uma prova técnica). Para publicar na sua cópia, crie a
+  # variável de repositório ENABLE_PAGES=true e ative Settings → Pages → Source: GitHub Actions.
   deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: vars.ENABLE_PAGES == 'true' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-24.04
     environment:
