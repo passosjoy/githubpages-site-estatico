@@ -45,9 +45,12 @@ python3 -m http.server 8000 --directory site   # http://localhost:8000
 # 3. valide como o CI valida
 python3 scripts/check_site.py site
 
-# 4. Settings → Pages → Source: GitHub Actions, e depois:
+# 4. na SUA cópia: Settings → Pages → Source: GitHub Actions
+#    e Settings → Secrets and variables → Actions → Variables: ENABLE_PAGES=true
 git commit -am "meu portfólio" && git push
 ```
+
+> Este repositório é uma prova técnica e **não publica** o próprio site: o CI só valida. O job `deploy` fica desligado até alguém definir `ENABLE_PAGES=true`, um padrão útil para templates.
 
 O endereço publicado depende do nome do repositório:
 
